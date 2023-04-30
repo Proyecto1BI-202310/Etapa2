@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Mi sitio web</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- Cargar CSS externo -->
+  <style>
+    {% include "style.css" %}
+  </style>
+</head>
+<body>
+  <!-- Encabezado -->
+  <header>
+    <nav>
+      <ul>
+        <li><a href="{% url 'paginaPrin:index' %}">Inicio</a></li>
+        <li><a href="{% url 'csvs:upload-view' %}">Negativos</a></li>
+        <li><a href="{% url 'comentarios:upload-view' %}">Carga de datos</a></li>
+        <li><a href="{% url 'predict:home' %}">Solos</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <!-- Contenido principal -->
+  <main>
+    <section class="hero">
+      <h1>Proyecto BI 1</h1>
+      <p>Selecciona una de las siguientes opciones:</p>
+      <ul>
+        <li>
+          <a href="{% url 'csvs:upload-view' %}">
+            <i class="fa fa-camera"></i>
+            <h2>Comentarios negativos</h2>
+          </a>
+        </li>
+        <li>
+          <a href="{% url 'comentarios:upload-view' %}">
+            <i class="fa fa-music"></i>
+            <h2>Carga de datos</h2>
+          </a>
+        </li>
+        <li>
+          <a href="{% url 'predict:home' %}">
+            <i class="fa fa-book"></i>
+            <h2>comentarios solos</h2>
+          </a>
+        </li>
+      </ul>
+    </section>
+  </main>
+
+  <!-- Pie de página -->
+  <footer>
+    <p>Proy BI 1</p>
+  </footer>
+
+</body>
+</html>

@@ -1,0 +1,70 @@
+{% extends 'base.html' %}
+
+{% block title %}
+main page
+{% endblock title %}
+
+
+
+
+{% block content %}
+
+<nav>
+  <ul>
+    <li><a href="{% url 'csvs:chart-view' %}">Graficos</a></li>
+    <li><a href="{% url 'csvs:negs-view' %}">Palabras negativas</a></li>
+    <li><a href="{% url 'csvs:upload-view' %}">Reseñas negativas</a></li>
+    <li><a href="{% url 'paginaPrin:index' %}">Pagina Principal</a></li>
+  </ul>
+</nav>
+
+<div class="container">
+  <h1>Comentarios negativos</h1>
+  <canvas id="hotelChart"></canvas>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+  var ctx = document.getElementById('hotelChart').getContext('2d');
+  var chart = new Chart(ctx, {
+      type: 'pie',
+      data: {
+          labels: {{ labels|safe }},
+          datasets: [{
+              backgroundColor: ['#dc3545', '#28a745'],
+              data: {{ values|safe }}
+          }]
+      },
+      options: {
+          responsive: true,
+          maintainAspectRatio: false
+      }
+  });
+</script>
+<table>
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Title</th>
+        <th>Rating</th>
+        <th>Texto</th>
+        <th>Location</th>
+        <th>Hotel</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for objeto in objetos %}
+        <tr>
+          <td>{{ objeto.idd }}</td>
+          <td>{{ objeto.title }}</td>
+          <td>{{ objeto.rating }}</td>
+          <td>{{ objeto.texto }}</td>
+          <td>{{ objeto.location }}</td>
+          <td>{{ objeto.hotel }}</td>
+        </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+
+{% endblock content %}
+

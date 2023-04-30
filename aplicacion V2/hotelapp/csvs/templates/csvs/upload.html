@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+
+{% block title %}
+main page
+{% endblock title %}
+
+{% block content %}
+
+<form id="upload-form" action="" method="POST" class="ui form" enctype="multipart/form-data">
+    {% csrf_token %}
+    {{form}}
+    <button type="submit" class="ui button primary">Confirm</button>
+</form>
+
+<div id="loading-message" style="display: none;">
+    <p>Cargando...</p>
+</div>
+
+{% if form.is_valid %}
+    <p>Archivo subido correctamente.</p>
+{% endif %}
+
+
+<a href="{% url 'paginaPrin:index' %}">Volver a la página principal</a>
+
+<script>
+    const form = document.getElementById('upload-form');
+    const loadingMessage = document.getElementById('loading-message');
+
+    form.addEventListener('submit', () => {
+        loadingMessage.style.display = 'block';
+    });
+</script>
+
+{% endblock content %}

@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<nav>
+  <ul>
+    <li><a href="{% url 'csvs:chart-view' %}">Graficos</a></li>
+    <li><a href="{% url 'csvs:negs-view' %}">Palabras negativas</a></li>
+    <li><a href="{% url 'csvs:upload-view' %}">Reseñas negativas</a></li>
+    <li><a href="{% url 'paginaPrin:index' %}">Pagina Principal</a></li>
+  </ul>
+</nav>
+
+<h1>PALABRAS MAS NEGATIVAS EN TUS COMENTARIOS</h1>
+<style>
+    .form-group {
+      margin-bottom: 20px;
+    }
+    input[type="text"] {
+      border-radius: 0;
+      border: 2px solid #ccc;
+      box-shadow: none;
+      height: 50px;
+      font-size: 18px;
+      padding: 10px;
+    }
+  </style>
+  
+<div class="container">
+  <div class="row">
+    {% for palabra in palabras %}
+
+    <div class="col-sm-4">
+      <div class="form-group">
+        <fieldset style="border: 2px solid #ccc; padding: 10px; border-radius: 10px;">
+            <legend style="font-size: 1.2rem; font-weight: bold; color: #333; background-color: #f0f0f0; padding: 5px; border-radius: 5px;">Palabra</legend>
+            <label style="font-size: 1.2rem; font-weight: bold; color: #333;">{{ palabra }}</label>
+          </fieldset>
+
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+</div>
+{% endblock %}

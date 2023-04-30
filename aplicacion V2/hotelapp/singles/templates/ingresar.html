@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+
+{% block title %}
+main page
+{% endblock title %}
+
+{% block content %}
+<h1>Ingrese un comentario:</h1>
+    <form method="post" action="">
+      {% csrf_token %}
+      <input type="text" name="comment">
+      <input type="submit" value="Enviar">
+    </form>
+    <div class="container my-5">
+      <div class="row">
+        <div class="col-md-8 mx-auto">
+          <div class="card shadow-lg">
+            <div class="card-body">
+              <h4 class="card-title">Comentario:</h4>
+              <p>{{ comment.texto }}</p>
+              <div class="card-text {% if comment.negativo %}bg-danger{% else %}bg-success{% endif %} text-white p-3 rounded">
+                <p>{{ comment.texto }}</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+{% endblock content %}
